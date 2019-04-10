@@ -1,0 +1,95 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext.versions = [
+            'android': [
+                    'compileSdk': 28,
+                    'buildTools': '28.0.3',
+                    'minSdk'    : 16,
+                    'targetSdk' : 27,
+            ],
+            'tools'  : [
+                    'gradle'   : '3.3.2',
+                    'kotlin'   : '1.3.21',
+                    'fabric'   : '1.25.4',
+                    'safe_args': '1.0.0-alpha05',
+
+            ],
+            'deps'   : [
+                    'androidx'            : [
+                            'core'               : '2.0.0-beta01',
+                            'supportLib'         : '1.0.2',
+                            'constraintlayout'   : '1.1.3',
+                            'exifinterface'      : '1.0.0',
+                            'legacysupport'      : '1.0.0',
+                            'navigation'         : '1.0.0-rc2',
+                            'recyclerview'       : '1.1.0-alpha04',
+                            'cardview'           : '1.0.0',
+                            'workmanager'        : '2.0.0',
+                            'paging'             : '2.0.0-beta01',
+                            'room'               : '2.0.0-beta01',
+                            'lifecycle'          : [
+                                    'extensions': '2.1.0-alpha04',
+                                    'viewmodel' : '2.1.0-alpha04',
+                            ]
+                    ],
+                    'material'            : '1.0.0',
+                    'okhttp3'             : [
+                            'logginginterceptor': '3.9.1'
+                    ],
+                    'kotlin'              : '1.2.51',
+                    'retrofit'            : '2.4.0',
+                    'timber'              : '4.5.1',
+                    'dagger'              : '2.22.1',
+                    'rx'                  : [
+                            'java'   : '2.2.8',
+                            'android': '2.1.0'
+                    ],
+                    'threetenabp'         : '1.0.5',
+                    'mvpskeleton'         : 'v1.0.0',
+                    'lombok'              : '1.16.20',
+                    'permissiondispatcher': '3.1.0',
+                    'multistateview'      : '1.3.2',
+                    'crashlytics'         : '2.9.5',
+                    'test'                : [
+                            'junit'   : '4.12',
+                            'runner'  : '1.1.0-alpha4',
+                            'espresso': '3.2.0-alpha03',
+                            'mockito' : '2.19.0'
+                    ]
+            ]
+    ]
+
+    repositories {
+        google()
+        jcenter()
+        maven { url 'https://maven.fabric.io/public' }
+        maven {
+            url 'https://jitpack.io'
+        }
+    }
+
+    dependencies {
+        classpath "com.android.tools.build:gradle:${versions.tools.gradle}"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.tools.kotlin}"
+        classpath "io.fabric.tools:gradle:${versions.tools.fabric}"
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url 'https://maven.fabric.io/public' }
+        maven {
+            url 'https://jitpack.io'
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

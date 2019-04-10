@@ -1,0 +1,15 @@
+apply plugin: 'java-library'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':domain')
+    implementation project(':common')
+
+    implementation "com.google.dagger:dagger:${versions.deps.dagger}"
+    implementation "com.github.edwinnyawoli:mvpskeleton:${versions.deps.mvpskeleton}"
+    testImplementation "junit:junit:${versions.deps.test.junit}"
+    testImplementation "org.mockito:mockito-core:${versions.deps.test.mockito}"
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"

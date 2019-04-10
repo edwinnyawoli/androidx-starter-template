@@ -1,0 +1,90 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'io.fabric'
+apply from: "$project.rootDir/tools/script-git-version.gradle"
+
+def props = new Properties()
+file("build.properties").withInputStream { props.load(it) }
+
+android {
+    compileSdkVersion versions.android.compileSdk
+
+    defaultConfig {
+        applicationId "com.edwinnyawoli.templateapplication"
+        minSdkVersion versions.android.minSdk
+        targetSdkVersion versions.android.targetSdk
+        versionCode gitVersionCodeTime
+        versionName gitVersionName
+        setProperty("archivesBaseName", "app-" + versionName + "-" + versionCode)
+
+        manifestPlaceholders = [fabricApiKey: props.getProperty("FABRIC_API_KEY")]
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        vectorDrawables.useSupportLibrary = true;
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+        }
+
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':data')
+    implementation project(':presentation')
+    implementation project(':common')
+
+    // Data dependencies
+    compileOnly "org.projectlombok:lombok:${versions.deps.lombok}"
+    annotationProcessor "org.projectlombok:lombok:${versions.deps.lombok}"
+
+    implementation "io.reactivex.rxjava2:rxandroid:${versions.deps.rx.android}"
+
+    // UI dependencies
+    implementation "androidx.appcompat:appcompat:${versions.deps.androidx.supportLib}"
+    implementation "androidx.cardview:cardview:${versions.deps.androidx.cardview}"
+    implementation "androidx.recyclerview:recyclerview:${versions.deps.androidx.recyclerview}"
+    implementation "com.google.android.material:material:${versions.deps.material}"
+    implementation "androidx.legacy:legacy-support-v4:${versions.deps.androidx.legacysupport}"
+    implementation "androidx.exifinterface:exifinterface:${versions.deps.androidx.exifinterface}"
+    implementation "androidx.arch.core:core-runtime:${versions.deps.androidx.core}"
+    implementation "androidx.constraintlayout:constraintlayout:${versions.deps.androidx.constraintlayout}"
+    implementation "com.jakewharton.threetenabp:threetenabp:${versions.deps.threetenabp}"
+    implementation "com.github.edwinnyawoli:mvpskeleton:${versions.deps.mvpskeleton}"
+    implementation "com.github.hotchemi:permissionsdispatcher:${versions.deps.permissiondispatcher}"
+    annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:${versions.deps.permissiondispatcher}"
+    implementation "com.github.Kennyc1012:MultiStateView:${versions.deps.multistateview}"
+    implementation "androidx.lifecycle:lifecycle-extensions:${versions.deps.androidx.lifecycle.extensions}"
+    implementation "androidx.lifecycle:lifecycle-viewmodel:${versions.deps.androidx.lifecycle.viewmodel}"
+
+    // DI dependencies
+    implementation "com.google.dagger:dagger:${versions.deps.dagger}"
+    annotationProcessor "com.google.dagger:dagger-compiler:${versions.deps.dagger}"
+    annotationProcessor "com.google.dagger:dagger-android-processor:${versions.deps.dagger}"
+    implementation "com.google.dagger:dagger-android-support:${versions.deps.dagger}"
+
+    // Logging Dependencies
+    implementation "com.jakewharton.timber:timber:${versions.deps.timber}"
+    implementation("com.crashlytics.sdk.android:crashlytics:${versions.deps.crashlytics}@aar") {
+        transitive = true;
+    }
+
+    // Test dependencies
+    testImplementation "junit:junit:${versions.deps.test.junit}"
+    androidTestImplementation "androidx.test:runner:${versions.deps.test.runner}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${versions.deps.test.espresso}"
+    testImplementation "org.mockito:mockito-core:${versions.deps.test.mockito}"
+}

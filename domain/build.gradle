@@ -1,0 +1,15 @@
+apply plugin: 'java-library'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    compileOnly "org.projectlombok:lombok:${versions.deps.lombok}"
+    annotationProcessor "org.projectlombok:lombok:${versions.deps.lombok}"
+    api "com.jakewharton.threetenabp:threetenabp:${versions.deps.threetenabp}"
+    api "io.reactivex.rxjava2:rxjava:${versions.deps.rx.java}"
+
+    testImplementation "junit:junit:${versions.deps.test.junit}"
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"

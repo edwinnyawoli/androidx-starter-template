@@ -1,0 +1,13 @@
+apply plugin: 'java-library'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.google.dagger:dagger:${versions.deps.dagger}"
+    implementation "io.reactivex.rxjava2:rxjava:${versions.deps.rx.java}"
+    annotationProcessor "com.google.dagger:dagger-compiler:${versions.deps.dagger}"
+
+    testImplementation "junit:junit:${versions.deps.test.junit}"
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
