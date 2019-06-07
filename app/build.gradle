@@ -45,7 +45,6 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':data')
     implementation project(':presentation')
-    implementation project(':common')
 
     // Data dependencies
     compileOnly "org.projectlombok:lombok:${versions.deps.lombok}"

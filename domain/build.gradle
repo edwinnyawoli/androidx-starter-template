@@ -2,6 +2,7 @@ apply plugin: 'java-library'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api project(':common')
 
     compileOnly "org.projectlombok:lombok:${versions.deps.lombok}"
     annotationProcessor "org.projectlombok:lombok:${versions.deps.lombok}"
