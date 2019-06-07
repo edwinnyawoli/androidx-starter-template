@@ -33,10 +33,7 @@ public class TemplateApplication extends DaggerApplication {
             loggingLevel = HttpLoggingInterceptor.Level.NONE;
         }
 
-        return DaggerAppComponent.builder()
-                .loggingLevel(loggingLevel)
-                .context(this)
-                .baseUrl("http://127.0.0.1/")
-                .create(this);
+        return DaggerAppComponent.factory()
+                .create(loggingLevel, this, "http://127.0.0.1/");
     }
 }

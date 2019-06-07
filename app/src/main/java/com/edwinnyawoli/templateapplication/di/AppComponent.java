@@ -33,15 +33,10 @@ import okhttp3.logging.HttpLoggingInterceptor;
 @AppScope
 public interface AppComponent extends AndroidInjector<TemplateApplication> {
 
-    @Component.Builder
-    abstract class Builder extends AndroidInjector.Builder<TemplateApplication> {
-        @BindsInstance
-        public abstract Builder loggingLevel(HttpLoggingInterceptor.Level loggingLevel);
-
-        @BindsInstance
-        public abstract Builder context(Context context);
-
-        @BindsInstance
-        public abstract Builder baseUrl(@Api.BaseUrl String baseUrl);
+    @Component.Factory
+    abstract class Factory {
+        public abstract AppComponent create(@BindsInstance HttpLoggingInterceptor.Level loggingLevel,
+                                            @BindsInstance Context context,
+                                            @BindsInstance @Api.BaseUrl String baseUrl);
     }
 }
