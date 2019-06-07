@@ -5,7 +5,7 @@ buildscript {
             'android': [
                     'compileSdk': 28,
                     'buildTools': '28.0.3',
-                    'minSdk'    : 16,
+                    'minSdk'    : 21,
                     'targetSdk' : 27,
             ],
             'tools'  : [
@@ -33,7 +33,7 @@ buildscript {
                                     'viewmodel' : '2.1.0-alpha04',
                             ]
                     ],
-                    'material'            : '1.0.0',
+                    'material'            : '1.0.0-alpha07',
                     'okhttp3'             : [
                             'logginginterceptor': '3.9.1'
                     ],
