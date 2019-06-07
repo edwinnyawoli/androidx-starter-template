@@ -16,6 +16,8 @@
 
 package com.edwinnyawoli.templateapplication.ui.login;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.edwinnyawoli.templateapplication.R;
@@ -23,6 +25,10 @@ import com.edwinnyawoli.templateapplication.R;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginActivity extends AppCompatActivity {
+
+    public static Intent intentFor(Context context) {
+        return new Intent(context, LoginActivity.class);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

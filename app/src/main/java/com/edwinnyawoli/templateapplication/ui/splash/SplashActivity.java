@@ -18,17 +18,15 @@ package com.edwinnyawoli.templateapplication.ui.splash;
 
 import android.os.Bundle;
 
-import com.edwinnyawoli.templateapplication.ui.EmptyActivity;
+import com.edwinnyawoli.templateapplication.ui.login.LoginActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.util.UUID;
 
 public class SplashActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        startActivity(EmptyActivity.intentFor(this, UUID.randomUUID().toString()));
+        startActivity(LoginActivity.intentFor(this));
     }
 }
