@@ -17,6 +17,7 @@
 package com.edwinnyawoli.templateapplication.ui.splash;
 
 import android.os.Bundle;
+import android.os.Handler;
 
 import com.edwinnyawoli.templateapplication.ui.login.LoginActivity;
 
@@ -27,6 +28,9 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        startActivity(LoginActivity.intentFor(this));
+        new Handler().postDelayed(() -> {
+            startActivity(LoginActivity.intentFor(this));
+            finish();
+        }, 200);
     }
 }
