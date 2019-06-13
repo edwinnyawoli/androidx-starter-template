@@ -32,6 +32,13 @@ jobs:
         - ~/.gradle
         key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
     - run:
+        name: Run Common Module Unit Tests
+        command: ./gradlew :common:test
+    - store_artifacts:
+        path: common/build/reports
+    - store_test_results:
+        path: common/build/test-results
+    - run:
         name: Run Presentation Module Unit Tests
         command: ./gradlew :presentation:test
     - store_artifacts:
