@@ -21,7 +21,9 @@
             android:name="io.fabric.ApiKey"
             android:value="${fabricApiKey}" />
 
-        <activity android:name=".ui.splash.SplashActivity">
+        <activity
+            android:name=".ui.splash.SplashActivity"
+            android:theme="@style/AppTheme.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
