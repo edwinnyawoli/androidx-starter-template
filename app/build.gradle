@@ -6,7 +6,7 @@ apply plugin: 'io.fabric'
 apply from: "$project.rootDir/tools/script-git-version.gradle"
 
 jacoco {
-    toolVersion = versions.tools.jacoco
+    toolVersion = "$versions.tools.jacoco"
 }
 
 tasks.withType(Test) {
@@ -125,7 +125,7 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-core:${versions.deps.test.espresso}"
     androidTestUtil "com.android.support.test:orchestrator:${versions.deps.test.orchestrator}"
 
-    testImplementation 'org.robolectric:robolectric:3.7.1'
+    testImplementation "org.robolectric:robolectric:${versions.deps.test.roboelectric}"
     testImplementation "junit:junit:${versions.deps.test.junit}"
     testImplementation "org.mockito:mockito-core:${versions.deps.test.mockito}"
 }

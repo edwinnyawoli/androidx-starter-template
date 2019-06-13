@@ -56,7 +56,8 @@ buildscript {
                             'runner'      : '1.1.0-alpha4',
                             'espresso'    : '3.2.0-alpha03',
                             'mockito'     : '2.19.0',
-                            'orchestrator': '1.0.2'
+                            'orchestrator': '1.0.2',
+                            'roboelectric' : '3.7.1'
                     ]
             ]
     ]
