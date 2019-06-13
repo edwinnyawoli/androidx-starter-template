@@ -41,7 +41,7 @@ dependencies {
     api "androidx.room:room-runtime:${versions.deps.androidx.room}"
     annotationProcessor "androidx.room:room-compiler:${versions.deps.androidx.room}"
     api "androidx.room:room-rxjava2:${versions.deps.androidx.room}"
-    implementation "androidx.paging:paging-runtime:${versions.deps.androidx.paging}"
+    api "androidx.paging:paging-runtime:${versions.deps.androidx.paging}"
     implementation "android.arch.paging:rxjava2:${versions.deps.androidx.paging}"
 
     api "com.squareup.okhttp3:logging-interceptor:${versions.deps.okhttp3.logginginterceptor}"
