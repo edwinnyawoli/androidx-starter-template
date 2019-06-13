@@ -10,10 +10,10 @@ with a few modifications.
 ## What to do
 There are a few things you would need to rename before you get started.
 * `TemplateApplication` file
-* `applicationId` in module *build.gradle* file
-* `package` in *AndroidManifext.xml* file
-* `app_name` in *strings.xml* file
-* `working_directory` in *.circleci\config.yml* file
+* `applicationId` in *app/build.gradle* file
+* `package` in *AndroidManifest.xml* file
+* `app_name` in *res/strings.xml* file
+* `working_directory` in *.circleci/config.yml* file
 
 This project uses **Crashlytics** for crash reporting. As a result, you need to provide a
 *Fabric* api key. To provide your api key, create a **build.properties** file in the app
