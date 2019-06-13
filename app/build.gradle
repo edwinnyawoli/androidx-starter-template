@@ -1,8 +1,35 @@
 apply plugin: 'com.android.application'
+apply plugin: 'jacoco'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'io.fabric'
 apply from: "$project.rootDir/tools/script-git-version.gradle"
+
+jacoco {
+    toolVersion = versions.tools.jacoco
+}
+
+tasks.withType(Test) {
+    jacoco.includeNoLocationClasses = true
+}
+
+task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'createDebugCoverageReport']) {
+
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+
+    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*']
+    def debugTree = fileTree(dir: "$project.buildDir/intermediates/classes/debug", excludes: fileFilter)
+    def mainSrc = "$project.projectDir/src/main/java"
+
+    sourceDirectories = files([mainSrc])
+    classDirectories = files([debugTree])
+    executionData = fileTree(dir: project.buildDir, includes: [
+            'jacoco/testDebugUnitTest.exec', 'outputs/code-coverage/connected/*coverage.ec'
+    ])
+}
 
 def props = new Properties()
 file("build.properties").withInputStream { props.load(it) }
@@ -27,6 +54,7 @@ android {
     buildTypes {
         debug {
             minifyEnabled false
+            testCoverageEnabled true
         }
 
         release {
@@ -39,7 +67,18 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    testOptions {
+        execution 'ANDROID_TEST_ORCHESTRATOR'
+        animationsDisabled true
+
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 }
+
+
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
@@ -63,8 +102,8 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:${versions.deps.androidx.constraintlayout}"
     implementation "com.jakewharton.threetenabp:threetenabp:${versions.deps.threetenabp}"
     implementation "com.github.edwinnyawoli:mvpskeleton:${versions.deps.mvpskeleton}"
-    implementation "com.github.hotchemi:permissionsdispatcher:${versions.deps.permissiondispatcher}"
-    annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:${versions.deps.permissiondispatcher}"
+    implementation "org.permissionsdispatcher:permissionsdispatcher:${versions.deps.permissiondispatcher}"
+    annotationProcessor "org.permissionsdispatcher:permissionsdispatcher-processor:${versions.deps.permissiondispatcher}"
     implementation "com.github.Kennyc1012:MultiStateView:${versions.deps.multistateview}"
     implementation "androidx.lifecycle:lifecycle-extensions:${versions.deps.androidx.lifecycle.extensions}"
     implementation "androidx.lifecycle:lifecycle-viewmodel:${versions.deps.androidx.lifecycle.viewmodel}"
@@ -82,8 +121,11 @@ dependencies {
     }
 
     // Test dependencies
-    testImplementation "junit:junit:${versions.deps.test.junit}"
     androidTestImplementation "androidx.test:runner:${versions.deps.test.runner}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${versions.deps.test.espresso}"
+    androidTestUtil "com.android.support.test:orchestrator:${versions.deps.test.orchestrator}"
+
+    testImplementation 'org.robolectric:robolectric:3.7.1'
+    testImplementation "junit:junit:${versions.deps.test.junit}"
     testImplementation "org.mockito:mockito-core:${versions.deps.test.mockito}"
 }
