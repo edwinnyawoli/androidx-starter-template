@@ -1,5 +1,6 @@
 # AndroidX Starter Template
 [![CircleCI](https://circleci.com/gh/edwinnyawoli/androidx-starter-template.svg?style=svg)](https://circleci.com/gh/edwinnyawoli/androidx-starter-template)
+
 A template that can help you quickly start building your android applications.
 
 The structuring of this project is based on what is described
