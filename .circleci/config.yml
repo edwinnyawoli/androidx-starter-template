@@ -64,3 +64,8 @@ jobs:
         command: ./gradlew lint
     - store_artifacts:
         path: app/build/reports
+    - run:
+        name: Jacoco Test Coverage
+        command: ./gradlew jacocoTestCoverage
+    - store_artifacts:
+        path: app/build/reports/jacoco
