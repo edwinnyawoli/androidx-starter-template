@@ -22,13 +22,13 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
-import androidx.exifinterface.media.ExifInterface;
 import android.text.TextUtils;
 import android.util.Base64;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
+import androidx.exifinterface.media.ExifInterface;
 import timber.log.Timber;
 
 import static android.util.Base64.DEFAULT;
@@ -40,8 +40,9 @@ import static android.util.Base64.DEFAULT;
 public class BitmapUtils {
 
     public static String base64PNGEncodeBitmap(Bitmap bitmap) {
-        if (bitmap == null)
+        if (bitmap == null) {
             return null;
+        }
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 65, baos);
@@ -99,8 +100,9 @@ public class BitmapUtils {
     public static String base64PNGEncodeScaledBitmap(Bitmap bitmap,
                                                      int scaledWidth,
                                                      int scaledHeight) throws OutOfMemoryError {
-        if (bitmap == null)
+        if (bitmap == null) {
             return null;
+        }
 
         scaledWidth = Math.max(scaledWidth, 350);
         scaledHeight = Math.max(scaledHeight, 350);
@@ -115,8 +117,9 @@ public class BitmapUtils {
             scaledBitmap.compress(Bitmap.CompressFormat.JPEG, 65, baos);
             byte[] bitmapByteArray = baos.toByteArray();
 
-            if (!scaledBitmap.isRecycled())
+            if (!scaledBitmap.isRecycled()) {
                 scaledBitmap.recycle();
+            }
             return Base64.encodeToString(bitmapByteArray, DEFAULT);
         } catch (OutOfMemoryError e) {
             Timber.e(e);
@@ -127,8 +130,9 @@ public class BitmapUtils {
     public static String base64PNGEncodeSmallerScaledBitmap(Bitmap scaledBitmap,
                                                             int scaledWidth,
                                                             int scaledHeight) throws OutOfMemoryError {
-        if (scaledBitmap == null)
+        if (scaledBitmap == null) {
             return null;
+        }
 
         System.gc();
 

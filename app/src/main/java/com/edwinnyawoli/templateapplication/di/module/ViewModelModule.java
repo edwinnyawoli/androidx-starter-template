@@ -1,8 +1,5 @@
 package com.edwinnyawoli.templateapplication.di.module;
 
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
-
 import com.edwinnyawoli.templateapplication.ui.TestViewModel;
 
 import java.lang.annotation.Documented;
@@ -15,6 +12,9 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.inject.Provider;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 import dagger.Binds;
 import dagger.MapKey;
 import dagger.Module;
@@ -48,8 +48,9 @@ public abstract class ViewModelModule {
             this.viewModelProviderMap = viewModelProviderMap;
         }
 
+        @NonNull
         @Override
-        public <T extends ViewModel> T create(Class<T> modelClass) {
+        public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
             Provider<? extends ViewModel> viewModelProvider = viewModelProviderMap.get(modelClass);
             if (viewModelProvider == null) {
                 for (Map.Entry<Class<? extends ViewModel>, Provider<ViewModel>>
