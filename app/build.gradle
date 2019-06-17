@@ -1,12 +1,21 @@
+project.extensions.extraProperties.set('SpotBugsTask', com.github.spotbugs.SpotBugsTask)
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'io.fabric'
 apply from: "$project.rootDir/scripts/script-git-version.gradle"
 apply from: "$project.rootDir/scripts/jacoco.gradle"
+apply from: "$project.rootDir/scripts/spotbugs.gradle"
+apply from: "$project.rootDir/scripts/pmd.gradle"
+apply from: "$project.rootDir/scripts/checkstyle.gradle"
 
 def props = new Properties()
 file("build.properties").withInputStream { props.load(it) }
+
+afterEvaluate {
+    check.dependsOn 'checkstyle', 'spotbugs', 'pmd'
+}
 
 android {
     compileSdkVersion versions.android.compileSdk

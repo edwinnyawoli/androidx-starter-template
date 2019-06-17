@@ -60,12 +60,12 @@ jobs:
     - store_test_results:
         path: data/build/test-results
     - run:
-        name: Run Lint Test
-        command: ./gradlew lint
+          name: Jacoco Test Coverage
+          command: ./gradlew jacocoTestReport
     - store_artifacts:
-        path: app/build/reports
+          path: app/build/reports/jacoco
     - run:
-        name: Jacoco Test Coverage
-        command: ./gradlew jacocoTestReport
+          name: Run Check
+          command: ./gradlew check
     - store_artifacts:
-        path: app/build/reports/jacoco
+          path: app/build/reports
