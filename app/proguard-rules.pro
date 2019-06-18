@@ -23,6 +23,10 @@
 -dontwarn okhttp3.**
 -dontwarn okio.**
 -dontwarn org.codehaus.**
+-dontwarn org.conscrypt.**
+
+# A resource is loaded with a relative path so the package of this class must be preserved.
+-keepnames class okhttp3.internal.publicsuffix.PublicSuffixDatabase
 
 # Retrofit does reflection on generic parameters. InnerClasses is required to use Signature and
 # EnclosingMethod is required to use InnerClasses.
@@ -34,10 +38,19 @@
 # Top-level functions that can only be used by Kotlin.
 -dontwarn retrofit2.-KotlinExtensions
 
--keep com.edwinnyawoli.templateapplication.data.model.** {
+-keep public class com.google.android.gms.common.GooglePlayServicesUtil {*;}
+-dontwarn com.google.android.gms.**
+
+
+# Crashlytics 2.+
+-keep class com.crashlytics.** { *; }
+-keep class com.crashlytics.android.**
+
+#
+-keep class com.edwinnyawoli.templateapplication.data.model.** {
     *;
 }
 
--keep com.edwinnyawoli.templateapplication.data.remote.** {
+-keep class com.edwinnyawoli.templateapplication.data.remote.** {
     *;
 }
