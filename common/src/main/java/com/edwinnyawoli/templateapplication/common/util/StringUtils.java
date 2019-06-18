@@ -33,10 +33,11 @@ public class StringUtils {
      * @return An empty string if value is null and the value itself if not null.
      */
     public static String emptyIfNull(String value) {
-        if (value == null)
+        if (value == null) {
             return "";
-        else
+        } else {
             return value;
+        }
     }
 
     public static String join(Collection<String> list, String separator) {
@@ -60,9 +61,9 @@ public class StringUtils {
     }
 
     public static String capitalize(String original) {
-        if (original == null)
+        if (original == null) {
             return null;
-        else if (original.length() == 1) {
+        } else if (original.length() == 1) {
             return original.toUpperCase();
         } else {
             return original.substring(0, 1).toUpperCase()
@@ -89,8 +90,9 @@ public class StringUtils {
      */
     public static CharSequence trimTrailingWhitespace(CharSequence source) {
 
-        if(source == null)
+        if(source == null) {
             return "";
+        }
 
         int i = source.length();
 
