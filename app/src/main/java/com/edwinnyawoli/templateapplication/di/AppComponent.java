@@ -35,8 +35,9 @@ public interface AppComponent extends AndroidInjector<TemplateApplication> {
 
     @Component.Factory
     abstract class Factory {
-        public abstract AppComponent create(@BindsInstance HttpLoggingInterceptor.Level loggingLevel,
-                                            @BindsInstance Context context,
-                                            @BindsInstance @Api.BaseUrl String baseUrl);
+        public abstract AppComponent create(
+                @BindsInstance HttpLoggingInterceptor.Level loggingLevel,
+                @BindsInstance Context context,
+                @BindsInstance @Api.BaseUrl String baseUrl);
     }
 }

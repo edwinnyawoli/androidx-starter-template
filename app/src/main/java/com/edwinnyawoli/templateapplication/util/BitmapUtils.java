@@ -98,8 +98,8 @@ public class BitmapUtils {
     }
 
     public static String base64PNGEncodeScaledBitmap(Bitmap bitmap,
-                                                     int scaledWidth,
-                                                     int scaledHeight) throws OutOfMemoryError {
+            int scaledWidth,
+            int scaledHeight) throws OutOfMemoryError {
         if (bitmap == null) {
             return null;
         }
@@ -128,8 +128,8 @@ public class BitmapUtils {
     }
 
     public static String base64PNGEncodeSmallerScaledBitmap(Bitmap scaledBitmap,
-                                                            int scaledWidth,
-                                                            int scaledHeight) throws OutOfMemoryError {
+            int scaledWidth,
+            int scaledHeight) throws OutOfMemoryError {
         if (scaledBitmap == null) {
             return null;
         }
@@ -161,9 +161,9 @@ public class BitmapUtils {
             String[] proj = {MediaStore.Images.Media.DATA};
             cursor = context.getContentResolver().query(contentUri, proj,
                     null, null, null);
-            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
             cursor.moveToFirst();
-            return cursor.getString(column_index);
+            return cursor.getString(columnIndex);
         } catch (Exception e) {
             Timber.e("getRealPathFromURI Exception : " + e.toString());
             return "";
