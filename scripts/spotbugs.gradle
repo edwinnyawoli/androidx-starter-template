@@ -1,7 +1,7 @@
 apply plugin: 'com.github.spotbugs'
 
 spotbugs {
-    ignoreFailures = false
+    ignoreFailures = true
 
     effort = "min"
     // This selects what level of bugs to report: low means low priority issues will be reported
