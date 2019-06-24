@@ -34,40 +34,41 @@ jobs:
         - ~/.gradle
         key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
     - run:
-        name: Run Common Module Unit Tests
-        command: ./gradlew :common:test
+        name: Run Common Module Checks
+        command: ./gradlew :common:check
     - store_artifacts:
         path: common/build/reports
     - store_test_results:
         path: common/build/test-results
     - run:
-        name: Run Presentation Module Unit Tests
-        command: ./gradlew :presentation:test
+        name: Run Presentation Module Checks
+        command: ./gradlew :presentation:check
     - store_artifacts:
         path: presentation/build/reports
     - store_test_results:
         path: presentation/build/test-results
     - run:
-        name: Run Domain Module Unit Tests
-        command: ./gradlew :domain:test
+        name: Run Domain Module Checks
+        command: ./gradlew :domain:check
     - store_artifacts:
         path: domain/build/reports
     - store_test_results:
         path: domain/build/test-results
     - run:
-        name: Run Data Module Unit Tests
-        command: ./gradlew :data:testDebugUnitTest
+        name: Run Data Module Checks
+        command: ./gradlew :data:check
     - store_artifacts:
         path: data/build/reports
     - store_test_results:
         path: data/build/test-results
+
     - run:
           name: Jacoco Test Coverage
           command: ./gradlew jacocoTestReport
     - store_artifacts:
           path: app/build/reports/jacoco
     - run:
-          name: Run Check
+          name: Run App Module Check
           command: ./gradlew check
     - store_artifacts:
           path: app/build/reports
