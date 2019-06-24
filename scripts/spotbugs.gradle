@@ -9,11 +9,16 @@ spotbugs {
     // TODO: boost this to low once low priority issues are fixed.
     reportLevel = "medium"
 
-    excludeFilter = new File("${project.rootDir}/quality/spotbugs-exclude.xml")
+    def excludeFile = new File("${project.rootDir}/quality/spotbugs-exclude.xml")
+    if (!excludeFile.exists())
+        excludeFile = new File("${rootProject.rootDir}/quality/spotbugs-exclude.xml")
+    excludeFilter = excludeFile
+
 }
 
 task spotbugs(type: SpotBugsTask, dependsOn: "assemble", group: 'verification') {
-    classes = files("$projectDir.absolutePath/build/intermediates/javac")
+    classes = files("$projectDir.absolutePath/build/intermediates/javac",
+            "$projectDir.absolutePath/build/classes")
 
     source = fileTree('src/main/java')
     classpath = files()

@@ -14,9 +14,19 @@
  *    limitations under the License.
  */
 apply plugin: 'checkstyle'
+checkstyle {
+    toolVersion "8.22"
+
+    def checkstyleConfigFile = file("${project.rootDir}/quality/checkstyle.xml")
+    if (checkstyleConfigFile.exists()) {
+        configFile checkstyleConfigFile
+    } else {
+        def rootConfigFile = file("${rootProject.rootDir}/quality/checkstyle.xml")
+        configFile rootConfigFile
+    }
+}
 
 task checkstyle(type: Checkstyle) {
-    configFile file("${project.rootDir}/quality/checkstyle.xml")
     source 'src'
     include '**/*.java'
     exclude '**/gen/**'

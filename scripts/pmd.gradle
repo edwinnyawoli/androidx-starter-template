@@ -17,7 +17,13 @@ apply plugin: 'pmd'
 pmd {
     toolVersion = '5.5.2'
     ignoreFailures = true
-    ruleSetFiles = files("${project.rootDir}/quality/pmd-rules.xml")
+
+    def ruleSetCollection = files("${project.rootDir}/quality/pmd-rules.xml")
+    if (ruleSetCollection.empty) {
+        ruleSetCollection = files("${rootProject.rootDir}/quality/pmd-rules.xml")
+    }
+
+    ruleSetFiles = ruleSetCollection
     ruleSets = []
 }
 
