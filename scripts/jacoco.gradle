@@ -23,7 +23,13 @@ tasks.withType(Test) {
     jacoco.includeNoLocationClasses = true
 }
 
-task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'createDebugCoverageReport']) {
+task jacocoTestReport(type: JacocoReport) {
+    def taskDependencies = []
+    if (project.name == 'app') {
+        taskDependencies = ['testDebugUnitTest', 'createDebugCoverageReport']
+    }
+
+    dependsOn taskDependencies
     reports {
         xml.enabled = true
         html.enabled = true

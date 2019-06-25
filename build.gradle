@@ -109,8 +109,7 @@ allprojects {
 
 subprojects {
     afterEvaluate({
-
-        if (project.plugins.hasPlugin('com.android.library')) {
+        if (project.plugins.hasPlugin(com.android.build.gradle.api.AndroidBasePlugin)) {
             if (project.tasks.stream().noneMatch({ t -> t.name.equals('jacocoTestReport') })) {
                 project.apply from: "$project.rootDir/scripts/jacoco.gradle"
             }
