@@ -35,7 +35,7 @@ jobs:
         key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
     - run:
         name: Run App Module Build
-        command: ./gradlew build
+        command: ./gradlew build jacocoTestReport
     - store_artifacts:
         path: app/build/reports
     - codecov/upload:
@@ -68,8 +68,3 @@ jobs:
         path: data/build/reports
     - store_test_results:
         path: data/build/test-results
-    - run:
-        name: Jacoco Test Coverage
-        command: ./gradlew jacocoTestReport
-    - store_artifacts:
-        path: app/build/reports/jacoco
