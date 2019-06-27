@@ -44,7 +44,8 @@ task jacocoTestReport(type: JacocoReport) {
                       'android/**/*.*',
                       '**/*Fragment.*',
                       '**/*Activity.*']
-    def debugTree = fileTree(dir: "$project.buildDir/intermediates/classes/debug", excludes: fileFilter)
+    def debugTree = fileTree(dir: "$project.buildDir/intermediates/javac/debug", excludes:
+            fileFilter)
     def mainSrc = "$project.projectDir/src/main/java"
 
     sourceDirectories = files([mainSrc])
