@@ -6,7 +6,7 @@ buildscript {
                     'compileSdk': 28,
                     'buildTools': '28.0.3',
                     'minSdk'    : 21,
-                    'targetSdk' : 27,
+                    'targetSdk' : 28,
             ],
             'tools'  : [
                     'gradle'   : '3.3.2',
