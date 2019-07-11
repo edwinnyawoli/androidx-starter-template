@@ -23,7 +23,7 @@ public class TemplateApplication extends DaggerApplication {
             return;
         }
 
-        if (BuildConfig.DEBUG) {
+        if (BuildConfig.DEBUG && !isInTestMode()) {
             LeakCanary.install(this);
         }
 
@@ -44,5 +44,9 @@ public class TemplateApplication extends DaggerApplication {
 
         return DaggerAppComponent.factory()
                 .create(loggingLevel, this, "http://127.0.0.1/");
+    }
+
+    protected boolean isInTestMode() {
+        return false;
     }
 }
