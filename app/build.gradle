@@ -55,6 +55,8 @@ dependencies {
     implementation project(':data')
     implementation project(':presentation')
 
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.3'
+
     // Data dependencies
     compileOnly "org.projectlombok:lombok:${versions.deps.lombok}"
     annotationProcessor "org.projectlombok:lombok:${versions.deps.lombok}"

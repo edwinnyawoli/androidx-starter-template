@@ -3,6 +3,7 @@ package com.edwinnyawoli.templateapplication;
 import com.edwinnyawoli.templateapplication.di.DaggerAppComponent;
 import com.edwinnyawoli.templateapplication.log.CrashlyticsTree;
 import com.jakewharton.threetenabp.AndroidThreeTen;
+import com.squareup.leakcanary.LeakCanary;
 
 import dagger.android.AndroidInjector;
 import dagger.android.support.DaggerApplication;
@@ -18,6 +19,14 @@ public class TemplateApplication extends DaggerApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            return;
+        }
+
+        if (BuildConfig.DEBUG) {
+            LeakCanary.install(this);
+        }
+
         AndroidThreeTen.init(this);
     }
 
