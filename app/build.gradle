@@ -91,11 +91,13 @@ dependencies {
     }
 
     // Test dependencies
-    androidTestImplementation "androidx.test:runner:${versions.deps.test.runner}"
-    androidTestImplementation "androidx.test.espresso:espresso-core:${versions.deps.test.espresso}"
-    androidTestUtil "com.android.support.test:orchestrator:${versions.deps.test.orchestrator}"
-
     testImplementation "org.robolectric:robolectric:${versions.deps.test.roboelectric}"
+    testImplementation "androidx.test:core:${versions.deps.test.androidx}"
     testImplementation "junit:junit:${versions.deps.test.junit}"
     testImplementation "org.mockito:mockito-core:${versions.deps.test.mockito}"
+
+    androidTestImplementation "androidx.test:runner:${versions.deps.test.runner}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${versions.deps.test.espresso}"
+    androidTestImplementation "androidx.test.ext:junit:${versions.deps.test.androidxjunit}"
+    androidTestUtil "com.android.support.test:orchestrator:${versions.deps.test.orchestrator}"
 }
