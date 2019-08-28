@@ -59,7 +59,7 @@ buildscript {
                             'espresso'    : '3.2.0-alpha03',
                             'mockito'     : '2.19.0',
                             'orchestrator': '1.0.2',
-                            'roboelectric': '4.3',
+                            'roboelectric': '4.2.1',
                             'androidx'    : '1.2.0',
                             'androidxjunit': '1.1.1',
                     ]
